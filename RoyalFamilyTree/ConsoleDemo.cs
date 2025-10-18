@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace RoyalFamilyTree
 {
@@ -46,6 +47,93 @@ namespace RoyalFamilyTree
             PrintFamilyTree(root);
             
             Console.WriteLine("═══════════════════════════════════════════════════════");
+        }
+
+        public static void DemoBFSandDFS()
+        {
+            Console.WriteLine("\n╔═══════════════════════════════════════════════════════╗");
+            Console.WriteLine("║     BFS & DFS TRAVERSAL DEMONSTRATION                 ║");
+            Console.WriteLine("╚═══════════════════════════════════════════════════════╝\n");
+            
+            var root = FamilyTreeData.GetWindsorFamilyTree();
+
+            // Demonstrate BFS
+            Console.WriteLine("BREADTH-FIRST SEARCH (BFS) Traversal:");
+            Console.WriteLine("───────────────────────────────────────────────────────");
+            Console.WriteLine("Visits family members level by level (generation by generation)");
+            Console.WriteLine();
+            
+            var bfsResult = root.BreadthFirstSearch();
+            for (int i = 0; i < bfsResult.Count; i++)
+            {
+                var member = bfsResult[i];
+                Console.WriteLine($"{i + 1,3}. {member.Name} (Born: {member.DateOfBirth:yyyy})");
+            }
+            
+            Console.WriteLine($"\nTotal members visited: {bfsResult.Count}");
+            
+            // Demonstrate DFS
+            Console.WriteLine("\n\nDEPTH-FIRST SEARCH (DFS) Traversal:");
+            Console.WriteLine("───────────────────────────────────────────────────────");
+            Console.WriteLine("Visits family members depth-first (follows each lineage completely)");
+            Console.WriteLine();
+            
+            var dfsResult = root.DepthFirstSearch();
+            for (int i = 0; i < dfsResult.Count; i++)
+            {
+                var member = dfsResult[i];
+                Console.WriteLine($"{i + 1,3}. {member.Name} (Born: {member.DateOfBirth:yyyy})");
+            }
+            
+            Console.WriteLine($"\nTotal members visited: {dfsResult.Count}");
+            
+            // Demonstrate Search
+            Console.WriteLine("\n\nSEARCH FUNCTIONALITY:");
+            Console.WriteLine("───────────────────────────────────────────────────────");
+            
+            var searchTests = new List<string> { "William", "George", "Charles", "Elizabeth" };
+            
+            foreach (var searchTerm in searchTests)
+            {
+                Console.WriteLine($"\nSearching for '{searchTerm}':");
+                var results = root.SearchAllByName(searchTerm);
+                
+                if (results.Count == 0)
+                {
+                    Console.WriteLine("  No results found.");
+                }
+                else
+                {
+                    foreach (var member in results)
+                    {
+                        var position = member.GetSuccessionPosition(root);
+                        var positionText = position > 0 ? $"#{position} in line to throne" : "Not in direct succession";
+                        Console.WriteLine($"  ✓ {member.Name} - {positionText}");
+                    }
+                }
+            }
+            
+            // Demonstrate Line of Succession
+            Console.WriteLine("\n\nLINE OF SUCCESSION TO THE THRONE:");
+            Console.WriteLine("───────────────────────────────────────────────────────");
+            Console.WriteLine("First 10 in line:");
+            Console.WriteLine();
+            
+            var allMembers = root.BreadthFirstSearch();
+            var count = 0;
+            foreach (var member in allMembers)
+            {
+                var position = member.GetSuccessionPosition(root);
+                if (position > 0 && position <= 10)
+                {
+                    Console.WriteLine($"{position,3}. {member.Name} (Born: {member.DateOfBirth:MMMM d, yyyy})");
+                    count++;
+                }
+            }
+            
+            Console.WriteLine("\n╔═══════════════════════════════════════════════════════╗");
+            Console.WriteLine("║     END OF BFS & DFS DEMONSTRATION                    ║");
+            Console.WriteLine("╚═══════════════════════════════════════════════════════╝\n");
         }
     }
 }
