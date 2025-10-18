@@ -19,6 +19,23 @@ Each family member displays:
 - ✓ **Date of Birth**: Full date in readable format (e.g., "April 21, 1926")
 - ✓ **Alive Status**: Visual indicator and text description
 
+### 4. BFS and DFS Traversal ✓
+- ✓ **Breadth-First Search**: Level-order traversal (generation by generation)
+- ✓ **Depth-First Search**: Lineage-based traversal (follows each line completely)
+- ✓ **Used For**: Search functionality and succession calculations
+
+### 5. Search Functionality ✓
+- ✓ **Name Search**: Find members by name (case-insensitive, partial matching)
+- ✓ **Succession Position**: Shows position in line to throne
+- ✓ **Visual Highlight**: Highlights found members with red border and star
+- ✓ **Multiple Results**: Handles multiple matches with selection dialog
+
+### 6. Dynamic Member Addition ✓
+- ✓ **GUI Dialog**: Add new members through user-friendly interface
+- ✓ **Input Fields**: Name, date of birth, alive status, parent selection
+- ✓ **Validation**: Ensures required fields are filled
+- ✓ **Auto-Refresh**: Tree updates automatically after addition
+
 ## Additional Features Implemented
 
 ### Visual Design
@@ -26,10 +43,13 @@ Each family member displays:
    - Green (`#2ECC71`): Living family members
    - Blue (`#3498DB`): Living spouses
    - Gray (`#95A5A6`): Deceased members
+   - Red border with star (⭐): Highlighted search results
 
 2. **Professional UI**
    - Clean, modern design
    - Dark header with title
+   - Search bar with search/clear buttons
+   - "Add Family Member" button
    - Scrollable content area
    - Footer with legend
    - Rounded corners on member cards
@@ -40,6 +60,15 @@ Each family member displays:
    - Date of birth with full month name
    - Age for living members
    - "Deceased" indicator for those who have passed
+   - Succession position in search results
+
+4. **Interactive Features**
+   - Search box for finding members
+   - Click "Search" to find and highlight members
+   - "Clear" button to reset view
+   - "Add Family Member" dialog with form inputs
+   - Multi-result selection dialog
+   - Real-time tree updates
 
 ### Data Organization
 1. **Hierarchical Structure**
